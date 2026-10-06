@@ -6,7 +6,7 @@ type Theme = 'light' | 'dark'
 type Prefs = {
   lang: Lang
   theme: Theme
-  toggleLang: () => void
+  setLang: (lang: Lang) => void
   toggleTheme: () => void
   t: (text: Record<Lang, string>) => string
 }
@@ -29,12 +29,19 @@ function write(key: string, value: string) {
   }
 }
 
+function isLang(v: string | null): v is Lang {
+  return v === 'es' || v === 'en' || v === 'pt'
+}
+
 function initialLang(): Lang {
   const saved = read('lang')
-  if (saved === 'es' || saved === 'en') return saved
   const fromUrl = new URLSearchParams(window.location.search).get('lang')
-  if (fromUrl === 'en' || fromUrl === 'es') return fromUrl
-  return navigator.language?.toLowerCase().startsWith('es') ? 'es' : 'en'
+  if (isLang(fromUrl)) return fromUrl
+  if (isLang(saved)) return saved
+  const nav = navigator.language?.toLowerCase() ?? ''
+  if (nav.startsWith('es')) return 'es'
+  if (nav.startsWith('pt')) return 'pt'
+  return 'en'
 }
 
 function initialTheme(): Theme {
@@ -44,7 +51,7 @@ function initialTheme(): Theme {
 }
 
 export function PrefsProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(initialLang)
+  const [lang, setLangState] = useState<Lang>(initialLang)
   const [theme, setTheme] = useState<Theme>(initialTheme)
 
   useEffect(() => {
@@ -54,18 +61,16 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.title =
-      lang === 'es'
-        ? 'Liseth Giraldo · Desarrolladora Full Stack'
-        : 'Liseth Giraldo · Full Stack Developer'
+    document.title = {
+      es: 'Liseth Giraldo · Desarrolladora Full Stack',
+      en: 'Liseth Giraldo · Full Stack Developer',
+      pt: 'Liseth Giraldo · Desenvolvedora Full Stack',
+    }[lang]
   }, [lang])
 
-  const toggleLang = useCallback(() => {
-    setLang((prev) => {
-      const next = prev === 'es' ? 'en' : 'es'
-      write('lang', next)
-      return next
-    })
+  const setLang = useCallback((next: Lang) => {
+    write('lang', next)
+    setLangState(next)
   }, [])
 
   const toggleTheme = useCallback(() => {
@@ -77,8 +82,8 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const value = useMemo<Prefs>(
-    () => ({ lang, theme, toggleLang, toggleTheme, t: (text) => text[lang] }),
-    [lang, theme, toggleLang, toggleTheme],
+    () => ({ lang, theme, setLang, toggleTheme, t: (text) => text[lang] }),
+    [lang, theme, setLang, toggleTheme],
   )
 
   return <PrefsContext.Provider value={value}>{children}</PrefsContext.Provider>

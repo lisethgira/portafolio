@@ -16,7 +16,7 @@ export default function App() {
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
       >
-        {t({ es: 'Saltar al contenido', en: 'Skip to content' })}
+        {t({ es: 'Saltar al contenido', en: 'Skip to content', pt: 'Pular para o conteúdo' })}
       </a>
       <Navbar />
       <main id="main" className="overflow-x-clip">

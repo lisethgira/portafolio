@@ -38,16 +38,16 @@ export function Skills() {
           )
         })}
         <article className="rounded-xl border border-dashed border-line p-5 sm:col-span-2 lg:col-span-2">
-          <h3 className="font-display font-semibold">{t({ es: 'Idiomas', en: 'Languages spoken' })}</h3>
+          <h3 className="font-display font-semibold">{t({ es: 'Idiomas', en: 'Languages spoken', pt: 'Idiomas' })}</h3>
           <ul className="mt-3 grid gap-2 text-sm text-muted sm:grid-cols-3">
             <li>
-              <span className="text-ink">{t({ es: 'Español', en: 'Spanish' })}</span> · {t({ es: 'nativo', en: 'native' })}
+              <span className="text-ink">{t({ es: 'Español', en: 'Spanish', pt: 'Espanhol' })}</span> · {t({ es: 'nativo', en: 'native', pt: 'nativo' })}
             </li>
             <li>
-              <span className="text-ink">{t({ es: 'Inglés', en: 'English' })}</span> · B1 (ICFES)
+              <span className="text-ink">{t({ es: 'Inglés', en: 'English', pt: 'Inglês' })}</span> · B1 (ICFES)
             </li>
             <li>
-              <span className="text-ink">{t({ es: 'Portugués', en: 'Portuguese' })}</span> · {t({ es: 'funcional', en: 'working' })}
+              <span className="text-ink">{t({ es: 'Portugués', en: 'Portuguese', pt: 'Português' })}</span> · {t({ es: 'funcional', en: 'working', pt: 'intermediário' })}
             </li>
           </ul>
         </article>

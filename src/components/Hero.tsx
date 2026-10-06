@@ -22,7 +22,7 @@ function CodeCard() {
         <pre className="overflow-x-auto p-5 font-mono text-[12.5px] leading-6 sm:text-[13px]">
           <code>
             <span className={k}>const</span> <span className={p}>liseth</span> = {'{'}
-            {'\n'}  <span className={p}>role</span>: <span className={s}>'{lang === 'es' ? 'Full Stack + Instructora' : 'Full Stack + Instructor'}'</span>,
+            {'\n'}  <span className={p}>role</span>: <span className={s}>'{{ es: 'Full Stack + Instructora', en: 'Full Stack + Instructor', pt: 'Full Stack + Instrutora' }[lang]}'</span>,
             {'\n'}  <span className={p}>since</span>: <span className={s}>2021</span>,
             {'\n'}  <span className={p}>stack</span>: [<span className={s}>'TypeScript'</span>, <span className={s}>'Angular'</span>,
             {'\n'}          <span className={s}>'React'</span>, <span className={s}>'Node.js'</span>],
@@ -32,7 +32,7 @@ function CodeCard() {
             {'\n'}  <span className={p}>openToWork</span>: <span className={k}>true</span>,
             {'\n'}{'}'}
             {'\n'}
-            {'\n'}<span className={c}>{lang === 'es' ? '// también: socorrista y scout 🏕️' : '// also: first responder & scout 🏕️'}</span>
+            {'\n'}<span className={c}>{{ es: '// también: socorrista y scout 🏕️', en: '// also: first responder & scout 🏕️', pt: '// também: socorrista e escoteira 🏕️' }[lang]}</span>
           </code>
         </pre>
       </div>

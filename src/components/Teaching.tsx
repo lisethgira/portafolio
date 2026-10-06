@@ -12,7 +12,7 @@ export function Teaching() {
       title={t(ui.sections.teaching)}
       intro={t({
         es: 'Enseñar me obliga a entender a fondo: explico lo que construyo y construyo lo que enseño.',
-        en: 'Teaching forces me to understand deeply: I explain what I build and build what I teach.',
+        en: 'Teaching forces me to understand deeply: I explain what I build and build what I teach.', pt: 'Ensinar me obriga a entender a fundo: explico o que construo e construo o que ensino.',
       })}
     >
       <ul className="grid gap-4 md:grid-cols-3">

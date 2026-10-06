@@ -78,7 +78,7 @@ export function Footer() {
             <p className="font-display leading-tight font-bold">
               Liseth Giraldo <span className="text-brand-violet dark:text-accent-2">Dev</span>
             </p>
-            <p className="text-xs text-faint">{t({ es: 'Desarrollo web · Formación', en: 'Web development · Training' })}</p>
+            <p className="text-xs text-faint">{t({ es: 'Desarrollo web · Formación', en: 'Web development · Training', pt: 'Desenvolvimento web · Formação' })}</p>
           </div>
         </div>
         <p className="max-w-md text-xs text-faint">

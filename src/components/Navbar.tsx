@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { Download, Menu, Moon, Sun, X } from 'lucide-react'
 import { usePrefs } from '../context/prefs'
 import { profile, ui } from '../i18n/content'
+import { LangMenu } from './LangMenu'
 import { LogoMark } from './Logo'
 
 const links = ['about', 'experience', 'skills', 'projects', 'teaching', 'contact'] as const
 
 export function Navbar() {
-  const { t, lang, theme, toggleLang, toggleTheme } = usePrefs()
+  const { t, theme, toggleTheme } = usePrefs()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState<string>('')
@@ -74,9 +75,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <button type="button" onClick={toggleLang} className={`${iconBtn} w-auto px-2.5 font-mono text-xs font-semibold`} aria-label={t(ui.toggleLang)} title={t(ui.toggleLang)}>
-            {lang === 'es' ? 'EN' : 'ES'}
-          </button>
+          <LangMenu />
           <button type="button" onClick={toggleTheme} className={iconBtn} aria-label={t(ui.toggleTheme)} title={t(ui.toggleTheme)}>
             {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>

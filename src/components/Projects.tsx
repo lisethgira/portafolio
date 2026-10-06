@@ -121,7 +121,7 @@ export function Projects() {
       <p className="mt-6 text-sm text-muted">
         <a href="https://github.com/lisethgira?tab=repositories" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-medium text-accent hover:underline">
           <GithubIcon className="h-4 w-4" />
-          {t({ es: 'Ver todos mis repositorios en GitHub', en: 'See all my repositories on GitHub' })}
+          {t({ es: 'Ver todos mis repositorios en GitHub', en: 'See all my repositories on GitHub', pt: 'Ver todos os meus repositórios no GitHub' })}
           <ArrowUpRight className="h-4 w-4" />
         </a>
       </p>
