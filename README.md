@@ -2,7 +2,7 @@
 
 Portafolio personal de **Liseth Arelis Giraldo Morales**, desarrolladora Full Stack e instructora de programación.
 
-🔗 **Sitio:** https://portafolio-eta-swart.vercel.app
+🔗 **Sitio:** https://liseth-giraldo-dev.vercel.app
 
 ## Stack
 
