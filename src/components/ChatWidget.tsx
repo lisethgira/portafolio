@@ -33,8 +33,9 @@ const newId = () => Math.random().toString(36).slice(2, 10) + Date.now().toStrin
 /** Renders the small subset of markdown the assistant uses: paragraphs, "- " lists, **bold** and links. */
 function RichText({ text }: { text: string }) {
   const inline = (s: string, key: string): ReactNode[] =>
-    s.split(/(\*\*[^*]+\*\*|https?:\/\/[^\s)]+|[a-z0-9-]+\.vercel\.app[^\s)]*|github\.com\/[^\s)]+)/gi).map((part, i) => {
+    s.split(/(\*\*[^*]+\*\*|\*[^*\s][^*]*\*|https?:\/\/[^\s)]+|[a-z0-9-]+\.vercel\.app[^\s)]*|github\.com\/[^\s)]+)/gi).map((part, i) => {
       if (/^\*\*.+\*\*$/.test(part)) return <strong key={key + i}>{part.slice(2, -2)}</strong>
+      if (/^\*[^*].*\*$/.test(part)) return <em key={key + i}>{part.slice(1, -1)}</em>
       if (/^(https?:\/\/|[a-z0-9-]+\.vercel\.app|github\.com\/)/i.test(part)) {
         const href = part.startsWith('http') ? part : `https://${part}`
         return (
