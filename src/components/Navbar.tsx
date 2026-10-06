@@ -8,7 +8,7 @@ import { LogoMark } from './Logo'
 const links = ['about', 'experience', 'skills', 'projects', 'teaching', 'contact'] as const
 
 export function Navbar() {
-  const { t, theme, toggleTheme } = usePrefs()
+  const { t, toggleTheme } = usePrefs()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState<string>('')
@@ -49,7 +49,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Liseth Giraldo Dev">
-          <LogoMark className="h-8 w-8 text-brand-navy" />
+          <LogoMark className="h-8 w-8 text-brand-navy" aria-hidden="true" />
           <span className="font-display text-[15px] leading-none font-bold tracking-tight">
             Liseth Giraldo <span className="text-brand-violet dark:text-accent-2">Dev</span>
           </span>
@@ -77,7 +77,8 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <LangMenu />
           <button type="button" onClick={toggleTheme} className={iconBtn} aria-label={t(ui.toggleTheme)} title={t(ui.toggleTheme)}>
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            <Sun className="hidden h-4 w-4 dark:block" aria-hidden="true" />
+            <Moon className="h-4 w-4 dark:hidden" aria-hidden="true" />
           </button>
           <a
             href={profile.cv}

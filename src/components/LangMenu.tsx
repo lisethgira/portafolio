@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Check, ChevronDown, Globe } from 'lucide-react'
 import { usePrefs } from '../context/prefs'
 import { languages, ui } from '../i18n/content'
+import { langPath } from '../i18n/interactive'
 
 /** Compact language picker: ES / EN / PT. */
 export function LangMenu() {
@@ -30,7 +31,7 @@ export function LangMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label={t(ui.toggleLang)}
+        aria-label={`${lang.toUpperCase()} · ${t(ui.toggleLang)}`}
         title={t(ui.toggleLang)}
         className="inline-flex h-9 items-center gap-1 rounded-lg border border-line bg-surface px-2.5 font-mono text-xs font-semibold text-muted uppercase transition hover:border-accent/50 hover:text-ink"
       >
@@ -42,12 +43,14 @@ export function LangMenu() {
         <ul role="menu" className="absolute right-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border border-line bg-surface py-1 shadow-xl shadow-black/20">
           {languages.map((l) => (
             <li key={l.code} role="none">
-              <button
-                type="button"
+              <a
+                href={langPath[l.code]}
+                hrefLang={l.code}
                 role="menuitemradio"
                 aria-checked={lang === l.code}
                 lang={l.code}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault()
                   setLang(l.code)
                   setOpen(false)
                 }}
@@ -57,8 +60,8 @@ export function LangMenu() {
                   <span className="mr-2 font-mono text-xs uppercase text-faint">{l.code}</span>
                   {l.label}
                 </span>
-                {lang === l.code && <Check className="h-4 w-4 text-accent" />}
-              </button>
+                {lang === l.code && <Check className="h-4 w-4 text-accent" aria-hidden="true" />}
+              </a>
             </li>
           ))}
         </ul>

@@ -1,5 +1,6 @@
 import { About } from './components/About'
-import { Contact, Footer } from './components/Contact'
+import { ChatWidget } from './components/ChatWidget'
+import { BackToTop, Contact, Footer } from './components/Contact'
 import { Experience } from './components/Experience'
 import { Hero } from './components/Hero'
 import { Navbar } from './components/Navbar'
@@ -19,7 +20,7 @@ export default function App() {
         {t({ es: 'Saltar al contenido', en: 'Skip to content', pt: 'Pular para o conteúdo' })}
       </a>
       <Navbar />
-      <main id="main" className="overflow-x-clip">
+      <main id="main" tabIndex={-1} className="overflow-x-clip focus:outline-none">
         <Hero />
         <About />
         <Experience />
@@ -29,6 +30,8 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
+      <ChatWidget />
     </>
   )
 }
